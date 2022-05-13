@@ -1,5 +1,6 @@
 package com.atlassian.springbootreact.application.restcontroller;
 
+import com.atlassian.springbootreact.domain.enums.StatusEnum;
 import com.atlassian.springbootreact.domain.filterandpagination.ElementPage;
 import com.atlassian.springbootreact.domain.filterandpagination.TaskFilter;
 import com.atlassian.springbootreact.domain.model.Task;
@@ -34,6 +35,11 @@ public class TaskController {
     @PostMapping
     public ResponseEntity<Task> save(@RequestBody @Valid Task task){
         return ResponseEntity.ok(taskService.save(task));
+    }
+    @PutMapping("/{id}/status/{status}")
+    public ResponseEntity<Task> updateStatus(@PathVariable("id") Long taskId, @PathVariable("status") StatusEnum status){
+        return ResponseEntity.ok(
+                taskService.updateStatus(taskId, status));
     }
 
     @DeleteMapping("/{id}")

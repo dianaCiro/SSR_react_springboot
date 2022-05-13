@@ -1,12 +1,11 @@
 package com.atlassian.springbootreact.domain.model;
 
-import com.atlassian.springbootreact.application.config.JacksonConfiguration;
+import com.atlassian.springbootreact.domain.enums.StatusEnum;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import java.time.LocalDateTime;
 
 @Data
@@ -16,8 +15,8 @@ public class Task {
     @NotNull(message = "dashboardId cannot be null")
     private Long dashboardId;
 
-    @NotBlank(message = "status is missing or invalid")
-    private String status;
+    @NotNull(message = "status is missing or invalid")
+    private StatusEnum status;
 
     @NotBlank(message = "description is missing or invalid")
     private String description;
@@ -26,7 +25,5 @@ public class Task {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm'Z'")
     private LocalDateTime startDate;
 
-    @NotNull(message = "endDate cannot be null")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm'Z'")
     private LocalDateTime endDate;
 }

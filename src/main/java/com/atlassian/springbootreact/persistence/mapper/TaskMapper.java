@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,7 +22,9 @@ public class TaskMapper {
     }
 
     public Task convertEntityToDomain(TaskEntity taskEntity) {
-        return objectMapper.convertValue(taskEntity, Task.class);
+        Task task = objectMapper.convertValue(taskEntity, Task.class);
+        task.setDashboardId(taskEntity.getDashboardEntity().getId());
+        return task;
     }
 
     public TaskEntity convertDomainToEntity(Task task) {

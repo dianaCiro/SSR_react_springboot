@@ -4,7 +4,6 @@ import com.atlassian.springbootreact.domain.filterandpagination.ElementPage;
 import com.atlassian.springbootreact.domain.filterandpagination.TaskFilter;
 import com.atlassian.springbootreact.domain.model.Task;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface TaskRepository {

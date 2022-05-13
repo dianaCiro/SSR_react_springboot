@@ -17,3 +17,19 @@ spring:
     hibernate.ddl-auto: update
   mvc:
     static-path-pattern: /static/**
+
+cloud:
+  aws:
+    stack:
+      auto: false
+    region:
+      static: us-east-1
+      auto: false
+    credentials:
+      access-key: FAKE
+      secret-key: FAKE
+    queue:
+      uri: http://localhost:4566
+      name: dashboard-queue
+      complete-uri: http://localhost:4566/000000000000/dashboard-queue
+

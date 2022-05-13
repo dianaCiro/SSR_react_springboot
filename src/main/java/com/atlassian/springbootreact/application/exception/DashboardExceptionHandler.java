@@ -1,7 +1,6 @@
 package com.atlassian.springbootreact.application.exception;
 
 import com.atlassian.springbootreact.domain.exception.NotFoundException;
-import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,8 +8,6 @@ import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
-import javax.validation.ConstraintViolationException;
 
 @ControllerAdvice
 @Slf4j
@@ -35,8 +32,16 @@ public class DashboardExceptionHandler {
     @ExceptionHandler(HttpMessageConversionException.class)
     public ResponseEntity<ResponseError> manageHttpMessageConversionException(HttpMessageConversionException httpMessageConversionException){
         log.warn(httpMessageConversionException.getMessage());
+
+        String message = httpMessageConversionException.getMessage();
+        if(message.contains("enum")) {
+            message = message.substring(message.indexOf("from") + 4, message.indexOf(";"));
+        } else {
+            message = "The format date must be yyyy-MM-dd HH:mm'Z'. Example 2019-01-01 14:02Z";
+        }
         ResponseError response = new ResponseError(HttpStatus.UNPROCESSABLE_ENTITY.value(),
-                "The format date must be yyyy-MM-dd HH:mm'Z'. Example 2019-01-01 14:02Z");
+                message);
+
         return new ResponseEntity<>(response, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 

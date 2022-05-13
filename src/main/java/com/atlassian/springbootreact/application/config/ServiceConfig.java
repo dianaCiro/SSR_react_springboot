@@ -1,6 +1,7 @@
 package com.atlassian.springbootreact.application.config;
 
 import com.atlassian.springbootreact.domain.repository.DashboardRepository;
+import com.atlassian.springbootreact.domain.repository.PublisherRepository;
 import com.atlassian.springbootreact.domain.repository.TaskRepository;
 import com.atlassian.springbootreact.domain.service.DashboardService;
 import com.atlassian.springbootreact.domain.service.TaskService;
@@ -16,7 +17,8 @@ public class ServiceConfig {
     }
 
     @Bean
-    public TaskService createTaskService(TaskRepository taskRepository, DashboardRepository dashboardRepository){
-        return new TaskService(taskRepository, dashboardRepository);
+    public TaskService createTaskService(TaskRepository taskRepository, DashboardRepository dashboardRepository,
+                                         PublisherRepository publisherRepository){
+        return new TaskService(taskRepository, dashboardRepository, publisherRepository);
     }
 }
