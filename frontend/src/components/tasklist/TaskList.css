@@ -1,0 +1,24 @@
+.td-actions {
+    min-width: 90px;
+  }
+  
+.table-detail thead th {
+    border-bottom: 1px solid#e2e729!important;
+    margin: 15px 0 0 0;
+    color: #01385e;
+    font-weight: 600;
+    vertical-align: middle;
+    line-height: 15px;
+    padding: 10px 0px 8px 0px;
+    position: relative;
+    font-size: 12px;
+    text-align: center;
+}
+
+.table-detail tbody td {
+    vertical-align: middle;
+}
+
+td {
+    color: #6c757d;
+}

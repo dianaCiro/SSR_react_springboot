@@ -11,6 +11,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/dashboard")
 @Validated
+@CrossOrigin
 public class DashboardController {
     private DashboardService dashboardService;
 

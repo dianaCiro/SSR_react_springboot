@@ -14,6 +14,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/task")
 @Validated
+@CrossOrigin
 public class TaskController {
 
     private TaskService taskService;

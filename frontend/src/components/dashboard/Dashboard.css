@@ -1,0 +1,14 @@
+.card-body {
+    background-color: #fff;
+    box-shadow: 2px 2px 4px #ccc;
+    padding: 1.0rem 1.5rem 1.5rem 1.5rem;
+    margin-bottom: 10px;
+}
+
+.container {
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 100px;
+    padding-bottom: 1%;
+}

@@ -37,3 +37,5 @@ build/
 /frontend/package-lock.json
 /src/main/resources/static
 /src/main/resources/templates
+/frontend/yarn.lock
+*/yarn.lock
