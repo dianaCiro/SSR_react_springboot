@@ -37,7 +37,7 @@ public class DashboardExceptionHandler {
         if(message.contains("enum")) {
             message = message.substring(message.indexOf("from") + 4, message.indexOf(";"));
         } else {
-            message = "The format date must be yyyy-MM-dd HH:mm'Z'. Example 2019-01-01 14:02Z";
+            message = "The format date must be yyyy-MM-dd HH:mm. Example 2019-01-01 14:02";
         }
         ResponseError response = new ResponseError(HttpStatus.UNPROCESSABLE_ENTITY.value(),
                 message);

@@ -11,7 +11,15 @@ export class TaskService {
             sortColumn: taskfilter.sortColumn,
             sortDirection: taskfilter.sortDirection
           };
-        return axios.get(`${this.baseUrl}`, {params: params})
+        return axios.get(`${this.baseUrl}`, {params: params}).catch((error) => {
+          throw error;
+        } );
+    }
+
+    create(task) {
+      return axios.post(this.baseUrl, task).catch((error) => {
+        throw error;
+      });
     }
     
 }

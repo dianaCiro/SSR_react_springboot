@@ -14,6 +14,7 @@ const taskFilter = {
   sortDirection: "ASC",
   dashboardId: "1",
   description: "",
+  status: "",
 };
 
 const Dashboard = () => {
@@ -60,7 +61,7 @@ const Dashboard = () => {
         </div>
         <TaskList tasks={tasksPage && tasksPage.elements} />
         <Pagination tasksPage={tasksPage} dispatch={dispatch} />
-        {createTask && <TaskEdit title="Create task" />}
+        {createTask && <TaskEdit title="Create task" dispatch={dispatch} />}
       </div>
     </>
   );

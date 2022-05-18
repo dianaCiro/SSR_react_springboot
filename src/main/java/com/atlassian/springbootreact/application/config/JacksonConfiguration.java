@@ -30,7 +30,7 @@ import org.springframework.context.annotation.Primary;
 @Configuration
 public class JacksonConfiguration {
 
-    public static final String FORMATO_LOCAL_DATE_TIME = "yyyy-MM-dd HH:mm'Z'";
+    public static final String FORMATO_LOCAL_DATE_TIME = "yyyy-MM-dd HH:mm";
 
     /**
      * Serializes and deserializes localDateTime in ISO 8601 format.

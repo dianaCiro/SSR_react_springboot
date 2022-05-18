@@ -5,7 +5,11 @@ export const TaskReducer = (state, action) => {
                 ...state,
               page: action.payload
             }
-    
+        case "creation":
+            return {
+                ...state,
+                status: action.payload
+            }
         default:
             return state;
     }

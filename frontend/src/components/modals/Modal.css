@@ -1,0 +1,27 @@
+.modal-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.green-color {
+    background: darkseagreen;
+}
+
+.red-color {
+    background: indianred;
+}
+
+.fa-check{
+    color: #198754;
+}
+
+.btn-danger {
+    background-color: indianred!important;
+    border-color: indianred!important;
+}
+
+.error-style{
+    font-size: 61px;
+    font-family: arial;
+    color: indianred;
+}
