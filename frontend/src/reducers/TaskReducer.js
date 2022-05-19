@@ -1,11 +1,13 @@
+import { TaskTypes } from './../components/ActionTypes/TaskType';
+
 export const TaskReducer = (state, action) => {
     switch (action.type) {
-        case "pageChange":
+        case TaskTypes.pageChange:
             return {
                 ...state,
               page: action.payload
             }
-        case "creation":
+        case TaskTypes.creation:
             return {
                 ...state,
                 status: action.payload

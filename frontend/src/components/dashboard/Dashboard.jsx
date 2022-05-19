@@ -26,9 +26,8 @@ const Dashboard = () => {
   const [state, dispatch] = useReducer(TaskReducer, taskFilter);
 
   useEffect(() => {
-    const taskService = new TaskService();
     setLoading(true);
-    taskService.getAllWithFilters(state).then(({ data }) => {
+    TaskService.getAllWithFilters(state).then(({ data }) => {
       setTasksPage(data);
       setLoading(false);
     });
@@ -52,6 +51,7 @@ const Dashboard = () => {
                   data-toggle="tooltip"
                   title="Create task"
                   onClick={onCreateTask}
+                  id="createTask"
                 >
                   Create task
                 </button>

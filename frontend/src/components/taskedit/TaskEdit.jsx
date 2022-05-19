@@ -4,10 +4,11 @@ import { StatusEnum } from "./../../enums/StatusEnum";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { TaskService } from "../../services/TaskService";
 import Moment from "moment";
 import { ModalReducer } from "../../reducers/ModalReducer";
 import ModalInfo from "./../modals/ModalInfo";
+import { TaskService } from "../../services/TaskService";
+import { TaskTypes } from "../ActionTypes/TaskType";
 
 const TaskEdit = ({ title, dispatch }) => {
   const [status, setstatus] = useState(StatusEnum[0]);
@@ -37,8 +38,6 @@ const TaskEdit = ({ title, dispatch }) => {
     informationSuccessModal
   );
 
-  const taskservice = new TaskService();
-
   const createTask = () => {
     const task = {
       status: status.value,
@@ -47,10 +46,10 @@ const TaskEdit = ({ title, dispatch }) => {
       dashboardId: "1",
     };
 
-    taskservice.create(task).then(
+    TaskService.create(task).then(
       () => {
         const actionTaskCreated = {
-          type: "creation",
+          type: TaskTypes.creation,
           payload: `taskCreated`,
         };
         dispatch(actionTaskCreated);

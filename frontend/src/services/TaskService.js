@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export class TaskService {
-    baseUrl = "http://localhost:8081/api/task";
+    static baseUrl = "http://localhost:8081/api/task";
     
-    getAllWithFilters(taskfilter){
+   static getAllWithFilters(taskfilter){
       let params = {
             limit: taskfilter.limit,
             dashboardId: taskfilter.dashboardId,
@@ -16,10 +16,16 @@ export class TaskService {
         } );
     }
 
-    create(task) {
+    static create(task) {
       return axios.post(this.baseUrl, task).catch((error) => {
         throw error;
       });
+    }
+
+    static updateStatus(status, tasksId) {
+      return axios.put(`${this.baseUrl}/${tasksId}/status/${status}`).catch((error) => {
+        throw error;
+      } );
     }
     
 }

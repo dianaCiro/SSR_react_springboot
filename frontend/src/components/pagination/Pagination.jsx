@@ -1,11 +1,12 @@
 import React from "react";
 import "./Pagination.css";
 import _ from "lodash";
+import { TaskTypes } from "../ActionTypes/TaskType";
 
 const Pagination = ({ tasksPage, dispatch }) => {
   const pageChange = (e) => {
     const actionPageChange = {
-      type: "pageChange",
+      type: TaskTypes.pageChange,
       payload: `${e.target.value - 1}`,
     };
     dispatch(actionPageChange);

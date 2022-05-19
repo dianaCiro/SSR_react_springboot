@@ -1,8 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./TaskList.css";
+import Select from "react-select";
+import { StatusEnum } from "./../../enums/StatusEnum";
+import { TaskService } from "../../services/TaskService";
 
 const TaskList = ({ tasks = [] }) => {
+  const handleStatus = (e, taskId) => {
+    TaskService.updateStatus(e.value, taskId);
+  };
+
   return (
     <div className="table-detail">
       <table className="table table-bordered">
@@ -20,14 +27,21 @@ const TaskList = ({ tasks = [] }) => {
             return (
               <tr key={task.id}>
                 <td className="text-center">{task.id}</td>
-                <td className="text-center">{task.status}</td>
+                <td className="text-center">
+                  <Select
+                    name="status"
+                    options={StatusEnum}
+                    defaultValue={{ label: task.status, value: task.status }}
+                    onChange={(e) => handleStatus(e, task.id)}
+                  />
+                </td>
                 <td className="text-center">{task.description}</td>
                 <td className="text-center">{task.startDate}</td>
-                <td className="text-center td-actions">
-                  <button className="btn btn-outline-primary mr-1">
+                <td className="text-center">
+                  <button className="btn btn-outline-primary m-1 btn-sm">
                     <i class="fa fa-pencil"></i>
                   </button>
-                  <button className="btn btn-outline-secondary ml-1">
+                  <button className="btn btn-outline-secondary btn-sm">
                     <i class="fa fa-trash"></i>
                   </button>
                 </td>

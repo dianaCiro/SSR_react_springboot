@@ -1,0 +1,7 @@
+CREATE TABLE "DASHBOARD"(
+    id BIGINT NOT NULL AUTO_INCREMENT ,
+    creation_date TIMESTAMP NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (`id`)
+);
+INSERT INTO DASHBOARD VALUES  (1, now(), 'Attlasian tasks');
