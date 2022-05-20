@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export class TaskService {
-    static baseUrl = "http://localhost:8081/api/task";
+    static baseUrl = "http://localhost:8081/task";
     
    static getAllWithFilters(taskfilter){
       let params = {
