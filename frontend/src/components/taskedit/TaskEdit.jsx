@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer } from "react";
 import "./TaskEdit.css";
 import { StatusEnum } from "./../../enums/StatusEnum";
 import Select from "react-select";
@@ -9,29 +9,19 @@ import { ModalReducer } from "../../reducers/ModalReducer";
 import ModalInfo from "./../modals/ModalInfo";
 import { TaskService } from "../../services/TaskService";
 import { TaskTypes } from "../ActionTypes/TaskType";
+import { ModalTypes } from "../ActionTypes/ModalType";
+import { useTaskCreate } from "../../hooks/useTaskCreate";
 
 const TaskEdit = ({ title, dispatch }) => {
-  const [status, setstatus] = useState(StatusEnum[0]);
-  const [description, setdescription] = useState("");
-  const [startDate, setstartDate] = useState(new Date());
-  const informationSuccessModal = {
-    showModal: false,
-    title: "",
-    message: "",
-    type: "",
-  };
-
-  const handleDescription = (e) => {
-    setdescription(e.target.value);
-  };
-
-  const handleStatus = (status) => {
-    setstatus(status);
-  };
-
-  const handleStartDate = (date) => {
-    setstartDate(date);
-  };
+  const [
+    status,
+    startDate,
+    description,
+    informationSuccessModal,
+    handleDescription,
+    handleStatus,
+    handleStartDate,
+  ] = useTaskCreate();
 
   const [modalState, modalDispatch] = useReducer(
     ModalReducer,
@@ -54,7 +44,7 @@ const TaskEdit = ({ title, dispatch }) => {
         };
         dispatch(actionTaskCreated);
         modalDispatch({
-          type: "modifyVisualization",
+          type: ModalTypes.modifyVisualization,
           payload: {
             showModal: true,
             message: "Task created successfully",
@@ -65,7 +55,7 @@ const TaskEdit = ({ title, dispatch }) => {
       },
       (error) => {
         modalDispatch({
-          type: "modifyVisualization",
+          type: ModalTypes.modifyVisualization,
           payload: {
             showModal: true,
             message: `${error.response.data.message}`,

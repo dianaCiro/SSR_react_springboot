@@ -1,6 +1,8 @@
+import { ModalTypes } from './../components/ActionTypes/ModalType';
+
 export const ModalReducer = (state, action) => {
     switch (action.type) {
-        case "modifyVisualization":
+        case ModalTypes.modifyVisualization:
             return {
                 ...state,
                 ...action.payload

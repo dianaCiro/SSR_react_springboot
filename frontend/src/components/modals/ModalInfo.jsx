@@ -1,10 +1,11 @@
 import { Button, CloseButton, Modal } from "react-bootstrap";
+import { ModalTypes } from "../ActionTypes/ModalType";
 import "./Modal.css";
 
 const ModalInfo = ({ modalInformation, dispatch }) => {
   const handleClose = () => {
     dispatch({
-      type: "modifyVisualization",
+      type: ModalTypes.modifyVisualization,
       payload: {
         showModal: false,
       },
@@ -15,7 +16,7 @@ const ModalInfo = ({ modalInformation, dispatch }) => {
     <>
       <Modal
         show={modalInformation.showModal}
-        isopen={handleClose}
+        onClick={handleClose}
         size="sm"
         aria-labelledby="contained-modal-title-vcenter"
         centered

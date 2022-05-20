@@ -1,11 +1,11 @@
-import { useEffect, useReducer, useState } from "react";
-import { TaskService } from "../../services/TaskService";
+import { useEffect, useReducer } from "react";
 import Loading from "../Loading";
 import TaskList from "../tasklist/TaskList";
 import "./Dashboard.css";
 import { TaskReducer } from "./../../reducers/TaskReducer";
 import Pagination from "../pagination/Pagination";
 import TaskEdit from "../taskedit/TaskEdit";
+import { useDashboard } from "./../../hooks/useDashboard";
 
 const taskFilter = {
   limit: "5",
@@ -18,24 +18,15 @@ const taskFilter = {
 };
 
 const Dashboard = () => {
-  const [loading, setLoading] = useState(true);
-  const [createTask, setcreateTask] = useState(false);
+  const [state, taskDispatch] = useReducer(TaskReducer, taskFilter);
 
-  const [tasksPage, setTasksPage] = useState({});
-
-  const [state, dispatch] = useReducer(TaskReducer, taskFilter);
+  const [createTask, tasksPage, loading, getTasks, onCreateTask] = useDashboard(
+    { state }
+  );
 
   useEffect(() => {
-    setLoading(true);
-    TaskService.getAllWithFilters(state).then(({ data }) => {
-      setTasksPage(data);
-      setLoading(false);
-    });
-  }, [state]);
-
-  const onCreateTask = () => {
-    setcreateTask(!createTask);
-  };
+    getTasks();
+  }, [state]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -60,8 +51,8 @@ const Dashboard = () => {
           </h5>
         </div>
         <TaskList tasks={tasksPage && tasksPage.elements} />
-        <Pagination tasksPage={tasksPage} dispatch={dispatch} />
-        {createTask && <TaskEdit title="Create task" dispatch={dispatch} />}
+        <Pagination tasksPage={tasksPage} dispatch={taskDispatch} />
+        {createTask && <TaskEdit title="Create task" dispatch={taskDispatch} />}
       </div>
     </>
   );
