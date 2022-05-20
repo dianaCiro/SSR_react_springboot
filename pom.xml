@@ -78,6 +78,7 @@
 				<executions>
 					<execution>
 						<id>install node and yarn</id>
+						<phase>compile</phase>
 						<goals>
 							<goal>install-node-and-yarn</goal>
 						</goals>
@@ -90,6 +91,7 @@
 
 					<execution>
 						<id>yarn install</id>
+						<phase>compile</phase>
 						<goals>
 							<goal>yarn</goal>
 						</goals>
@@ -100,6 +102,7 @@
 					</execution>
 					<execution>
 						<id>yarn build</id>
+						<phase>compile</phase>
 						<goals>
 							<goal>yarn</goal>
 						</goals>
@@ -117,7 +120,7 @@
 				<executions>
 					<execution>
 						<id>copy index.html</id>
-						<phase>generate-sources</phase>
+						<phase>package</phase>
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
@@ -133,7 +136,7 @@
 					</execution>
 					<execution>
 						<id>copy css files</id>
-						<phase>generate-sources</phase>
+						<phase>package</phase>
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>

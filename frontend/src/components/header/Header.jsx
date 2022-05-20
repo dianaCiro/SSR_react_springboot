@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-warning">
       <div className="container-fluid">
-        <h2 className="navbar-brand">Context App</h2>
+        <h2 className="navbar-brand">TODO APP</h2>
         <button
           className="navbar-toggler"
           type="button"
