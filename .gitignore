@@ -39,3 +39,5 @@ build/
 /src/main/resources/templates
 /frontend/yarn.lock
 */yarn.lock
+/frontend/coverage/*
+/frontend/src/test/component/__snapshots__/*

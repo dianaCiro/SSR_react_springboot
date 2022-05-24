@@ -11,7 +11,7 @@ const TaskList = ({ tasks = [] }) => {
   };
 
   return (
-    <div className="table-detail">
+    <div role="taskList" className="table-detail">
       <table className="table table-bordered">
         <thead className="thead-light">
           <tr>
@@ -25,7 +25,7 @@ const TaskList = ({ tasks = [] }) => {
         <tbody>
           {tasks.map((task) => {
             return (
-              <tr key={task.id}>
+              <tr aria-label="task" key={task.id}>
                 <td className="text-center">{task.id}</td>
                 <td className="text-center">
                   <Select
@@ -39,10 +39,10 @@ const TaskList = ({ tasks = [] }) => {
                 <td className="text-center">{task.startDate}</td>
                 <td className="text-center">
                   <button className="btn btn-outline-primary m-1 btn-sm">
-                    <i class="fa fa-pencil"></i>
+                    <i className="fa fa-pencil"></i>
                   </button>
                   <button className="btn btn-outline-secondary btn-sm">
-                    <i class="fa fa-trash"></i>
+                    <i className="fa fa-trash"></i>
                   </button>
                 </td>
               </tr>
