@@ -15,7 +15,7 @@ const Pagination = ({ tasksPage, dispatch }) => {
   return (
     <div className="row">
       <div className="col">
-        <strong className="font-color-gray">
+        <strong role="total_elements" className="font-color-gray">
           Total resultados:
           {tasksPage.totalElements}
         </strong>

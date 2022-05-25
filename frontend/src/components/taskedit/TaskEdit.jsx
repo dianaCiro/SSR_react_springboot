@@ -69,7 +69,7 @@ const TaskEdit = ({ title, dispatch }) => {
 
   return (
     <>
-      <div className="card-body mb-5">
+      <div aria-label="create_task_form" className="card-body mb-5">
         <h5 className="card-title">{title}</h5>
         <div>
           <div className="row">
@@ -118,7 +118,7 @@ const TaskEdit = ({ title, dispatch }) => {
                 onClick={createTask}
                 className="btn btn-primary node-btn ml-2"
               >
-                <i class="fa fa-plus"></i> {title}
+                <i className="fa fa-plus"></i> {title}
               </button>
             </div>
           </div>

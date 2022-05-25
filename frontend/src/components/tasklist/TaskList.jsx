@@ -27,9 +27,9 @@ const TaskList = ({ tasks = [] }) => {
             return (
               <tr aria-label="task" key={task.id}>
                 <td className="text-center">{task.id}</td>
-                <td className="text-center">
+                <td aria-label={"td" + task.id} className="text-center">
                   <Select
-                    name="status"
+                    name={"status" + task.id}
                     options={StatusEnum}
                     defaultValue={{ label: task.status, value: task.status }}
                     onChange={(e) => handleStatus(e, task.id)}

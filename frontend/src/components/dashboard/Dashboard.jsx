@@ -38,6 +38,7 @@ const Dashboard = () => {
               <div className="text-left col-md-8 pt-2">List of tasks</div>
               <div className="text-right col-md-4">
                 <button
+                  role="create_task"
                   className="btn btn-primary btn-sm"
                   data-toggle="tooltip"
                   title="Create task"

@@ -1,15 +1,30 @@
 import { render, screen } from "@testing-library/react";
 import Dashboard from "../../components/dashboard/Dashboard";
-import { act } from "react-dom/test-utils";
 import axios from "axios";
-import TaskList from "./../../components/tasklist/TaskList";
 import { TaskListMock } from "./../mocks/TaskList";
+import userEvent from "@testing-library/user-event";
 
 describe("<Dashboard/>", () => {
-  it("show the list of tasks", async () => {
+  beforeEach(async () => {
     axios.get = jest.fn().mockResolvedValue({ data: TaskListMock });
     render(<Dashboard />);
-    const res = await screen.findAllByLabelText("task");
-    expect(res).toHaveLength(7);
+    await screen.findAllByLabelText("task");
+  });
+
+  it("should show the list of tasks", () => {
+    expect(screen.getAllByLabelText("task")).toHaveLength(7);
+  });
+
+  it("should show pagination information", () => {
+    expect(screen.getByRole("total_elements").textContent).toContain(
+      "Total resultados:7"
+    );
+  });
+
+  it("should show TaskEdit component", async () => {
+    const btn = await screen.findByRole("create_task");
+    expect(() => screen.getByLabelText("create_task_form")).toThrow();
+    userEvent.click(btn);
+    expect(screen.getByLabelText("create_task_form")).toBeInTheDocument();
   });
 });
