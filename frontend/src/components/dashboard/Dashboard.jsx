@@ -1,5 +1,5 @@
 import { useEffect, useReducer } from "react";
-import Loading from "../Loading";
+import LoadingSpinner from "../spinner/LoadingSpinner";
 import TaskList from "../tasklist/TaskList";
 import "./Dashboard.css";
 import { TaskReducer } from "./../../reducers/TaskReducer";
@@ -30,7 +30,7 @@ const Dashboard = () => {
 
   return (
     <>
-      {loading && <Loading />}
+      {loading && <LoadingSpinner />}
       <div className="container">
         <div className="mb-4">
           <h5>
