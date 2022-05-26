@@ -43,4 +43,15 @@ public class TaskMapper {
         elementPage.setTotalPages(taskEntities.getTotalPages());
         return elementPage;
     }
+
+    public ElementPage<Task> convertPageToElementPage(List<TaskEntity> taskEntities) {
+        ElementPage<Task> elementPage = new ElementPage();
+        List<Task> tasks = taskEntities.stream().map(taskEntity ->
+                convertEntityToDomain(taskEntity)
+        ).collect(Collectors.toList());
+        elementPage.setElements(tasks);
+        elementPage.setTotalElements(tasks.size());
+        elementPage.setTotalPages(1);
+        return elementPage;
+    }
 }

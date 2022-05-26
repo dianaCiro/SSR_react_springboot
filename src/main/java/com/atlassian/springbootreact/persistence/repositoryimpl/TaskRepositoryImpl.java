@@ -62,10 +62,14 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public ElementPage<Task> retrieveTasks(TaskFilter taskFilter) {
-        Pageable pageable = getOf(taskFilter.getPage(), taskFilter.getLimit(), taskFilter.getSortDirection(),
-                taskFilter.getSortColumn());
-        Page<TaskEntity> taskEntities = jpaTaskRepository.findAll(getSpec(taskFilter), pageable);
-        return taskMapper.convertPageToElementPage(taskEntities);
+        if(taskFilter.getLimit() != null) {
+            Pageable pageable = getOf(taskFilter.getPage(), taskFilter.getLimit(), taskFilter.getSortDirection(),
+                    taskFilter.getSortColumn());
+            Page<TaskEntity> taskEntities = jpaTaskRepository.findAll(getSpec(taskFilter), pageable);
+            return taskMapper.convertPageToElementPage(taskEntities);
+        } else {
+            return taskMapper.convertPageToElementPage(jpaTaskRepository.findAll());
+        }
     }
 
     private PageRequest getOf(String page, String limit, String sortDirection, String sortColumn) {
