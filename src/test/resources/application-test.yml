@@ -1,0 +1,36 @@
+server:
+  port: ${PORT:8081}
+
+spring:
+  datasource:
+    initialization-mode: always
+    url: jdbc:h2:mem:testdb;MODE=MySQL
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+    data: classpath:dml/data.sql
+    schema: classpath:ddl/schema.sql
+  h2:
+    console.enabled: true
+    console.path: /h2-console
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    hibernate.ddl-auto: update
+  mvc:
+    static-path-pattern: /static/**
+
+cloud:
+  aws:
+    stack:
+      auto: false
+    region:
+      static: us-east-1
+      auto: false
+    credentials:
+      access-key: FAKE
+      secret-key: FAKE
+    queue:
+      uri: http://localhost:4566
+      name: dashboard-queue
+      complete-uri: http://localhost:4566/000000000000/dashboard-queue
+

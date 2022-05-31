@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ActiveProfiles("test")
-@SpringBootTest(classes = SpringbootReactApplication.class)
+@SpringBootTest(classes = {SpringbootReactApplication.class})
 @Transactional
 public class TaskControllerTest {
 
