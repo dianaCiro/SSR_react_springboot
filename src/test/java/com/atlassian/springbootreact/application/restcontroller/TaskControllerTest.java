@@ -200,7 +200,7 @@ public class TaskControllerTest {
         optionalTask = jpaTaskRepository.findById(taskResponse.getId());
 
         assertEquals(StatusEnum.DONE, optionalTask.get().getStatus());
-        Mockito.verify(publisherRepository, Mockito.times(1)).sendMessage("Status changed to DONE");
+        Mockito.verify(publisherRepository, Mockito.times(1)).sendMessage(Mockito.any());
     }
 
     @Test

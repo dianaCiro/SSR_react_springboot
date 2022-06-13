@@ -15,11 +15,11 @@ public class DashboardService {
         this.dashboardRepository = dashboardRepository;
     }
 
-    public Dashboard retrieveDashboard(Long dashboardId){
+    public Dashboard retrieveDashboard(Long dashboardId) {
 
         Optional<Dashboard> dashboardOptional = dashboardRepository.retrieveDashboard(dashboardId);
 
-        if(dashboardOptional.isEmpty()){
+        if(dashboardOptional.isEmpty()) {
             throw new NotFoundException("dashboard not found");
         } else {
             return dashboardOptional.get();

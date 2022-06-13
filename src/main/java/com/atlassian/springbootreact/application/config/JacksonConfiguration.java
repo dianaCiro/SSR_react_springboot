@@ -29,7 +29,6 @@ import org.springframework.context.annotation.Primary;
  */
 @Configuration
 public class JacksonConfiguration {
-
     public static final String FORMATO_LOCAL_DATE_TIME = "yyyy-MM-dd HH:mm";
 
     /**

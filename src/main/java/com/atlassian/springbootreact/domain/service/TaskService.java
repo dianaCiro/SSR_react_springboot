@@ -9,6 +9,8 @@ import com.atlassian.springbootreact.domain.model.Task;
 import com.atlassian.springbootreact.domain.repository.DashboardRepository;
 import com.atlassian.springbootreact.domain.repository.PublisherRepository;
 import com.atlassian.springbootreact.domain.repository.TaskRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -22,16 +24,19 @@ public class TaskService {
 
     private DashboardRepository dashboardRepository;
 
+    private ObjectMapper objectMapper;
+
     public TaskService(TaskRepository taskRepository, DashboardRepository dashboardRepository,
-                       PublisherRepository publisherRepository) {
+                       PublisherRepository publisherRepository, ObjectMapper objectMapper) {
         this.taskRepository = taskRepository;
         this.dashboardRepository = dashboardRepository;
         this.publisherRepository = publisherRepository;
+        this.objectMapper = objectMapper;
     }
     public Task retrieveTask(Long taskId) {
         Optional<Task> taskOptional = taskRepository.retrieveById(taskId);
 
-        if(taskOptional.isEmpty()){
+        if (taskOptional.isEmpty()) {
             throw new NotFoundException(TASK_NOT_FOUND);
         } else {
             return taskOptional.get();
@@ -41,7 +46,7 @@ public class TaskService {
     public void deleteTask(Long taskId) {
         Optional<Task> optionalTask = taskRepository.retrieveById(taskId);
 
-        if(optionalTask.isPresent()) {
+        if (optionalTask.isPresent()) {
             taskRepository.delete(taskId);
         } else {
             throw new NotFoundException(TASK_NOT_FOUND);
@@ -54,7 +59,7 @@ public class TaskService {
 
     public Task save(Task task) {
         Optional<Dashboard> dashboardOptional = dashboardRepository.retrieveDashboard(task.getDashboardId());
-        if(dashboardOptional.isPresent()) {
+        if (dashboardOptional.isPresent()) {
             return taskRepository.save(task);
         } else {
             throw new NotFoundException("The dashboard must exist in database");
@@ -70,7 +75,11 @@ public class TaskService {
            task.setStatus(status);
            if(StatusEnum.DONE.equals(status)) {
                task.setEndDate(LocalDateTime.now());
-              publisherRepository.sendMessage("Status changed to DONE");
+               try {
+                   publisherRepository.sendMessage(objectMapper.writeValueAsString(task));
+               } catch (JsonProcessingException e) {
+                   throw new RuntimeException(e);
+               }
            }
            return taskRepository.save(task);
         } else {
